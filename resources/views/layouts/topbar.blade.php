@@ -14,7 +14,7 @@
                     <a class="navbar-brand" href="{{url('/')}}">
                         <!-- Logo icon -->
                         <b class="logo-icon">
-                            <h2>DI</h2>
+                            <h2>PM</h2>
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
                             {{-- <img src="{{asset('assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" /> --}}
@@ -25,7 +25,7 @@
                         <!-- Logo text -->
                         <span class="logo-text">
 
-                            <h3>DASHBOARD IKU</h3>
+                            <h4>PENDING MATTERS</h4>
                             <!-- dark Logo text -->
                             {{-- <img src="{{asset('assets/images/romadan/logo_4.png')}}" alt="homepage" class="dark-logo w-100" /> --}}
                             <!-- Light Logo text -->

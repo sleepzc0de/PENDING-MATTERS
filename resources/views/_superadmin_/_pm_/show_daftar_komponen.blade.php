@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('_superadmin_.layouts.master')
 @section('css')
  <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet">
 @endsection
@@ -9,17 +9,18 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body text-center">
-                            <h1>Daftar Pending Matters <b>(Multi Komponen)</b></h1>
+                            {{-- <h1>Daftar Komponen</h1> --}}
+                            @include('_superadmin_.layouts.session_notif')
                             </div>
                             <div class="card-body">
-                                <h6>Pending Item :  {{$data->PENDING_MATTERS ?? 'KODE IKU KOSONG'}}</h6>
+                                <h6>Nama Pending Matters :  {{$data->PENDING_MATTERS ?? 'PENDING MATTERS KOSONG'}}</h6>
                                 <div class="table-responsive">
                                         <table id="daftar_komponen" class="table table-striped table-bordered w-100" style="text-align: center">
                                                 <thead >
                                                         <tr>
-                                                            <th>KOMPONEN ITEM</th>
-                                                            <th>UNIT IN CHARGE</th>
-                                                            <th>REALISASI</th>
+                                                            <th>KOMPONEN PENDING ITEM</th>
+                                                            <th>UIC KOMPONEN</th>
+                                                            <th>REALISASI KOMPONEN</th>
                                                             <th>AKSI</th>
                                                         </tr>
                                                 </thead>
@@ -29,7 +30,7 @@
                                         </table>
                                 </div>
                             </div>
-                            <a href="{{route('daftar-pm-fe')}}"><button class="btn btn-block btn-secondary mt-2"><i class="mdi mdi-10px mdi-arrow-left-bold mr-1"></i>KEMBALI</button></a>
+                            <a href="{{route('pending-matters-home.index')}}"><button class="btn btn-block btn-danger mt-2"><i class="mdi mdi-10px mdi-arrow-left-bold mr-1"></i>KEMBALI</button></a>
                         </div>
                     </div>
                 </div>
@@ -68,7 +69,7 @@ $('#daftar_komponen').DataTable({
             scrollCollapse: true,
             processing: true,
             serverSide: true,
-            ajax: "{{ route('daftar-komponen-fe',$current) }}",
+            ajax: "{{ route('daftar-komponen.show',$current) }}",
             columns: [
             // { data:'DT_RowIndex', name:'DT_RowIndex', width:'10px',orderable:false,searchable:false},
             {data: 'PENDING_MATTERS_KOMPONEN'},

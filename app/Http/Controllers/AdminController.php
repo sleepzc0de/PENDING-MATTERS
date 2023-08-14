@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Iku;
 use App\Models\Komponen;
+use App\Models\PendingMattersModel;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class AdminController extends Controller
     public function index()
     {
         $menuUsers = 'active';
-        $query = Iku::select('*');
+        $query = PendingMattersModel::select('*');
         if (request()->ajax()) {
             return datatables()->of($query)
                 ->addColumn('opsi', function ($query) {

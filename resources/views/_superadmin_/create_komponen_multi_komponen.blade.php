@@ -3,199 +3,98 @@
 @section('content')
  <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title text-center mb-3">Tambah Detail Multi Komponen</h4>
+                                <h4 class="card-title text-center mb-3">Tambah Komponen Pending Item</h4>
                                  @include('_superadmin_.layouts.session_notif')
                                 <form action="{{route('daftar-komponen.store')}}" class="needs-validation" method="POST" novalidate>
                                     @csrf
                                   <div class="form-row">
                                     <div class="col-md-12 mb-3" hidden>
-                                      <label for="validationTooltip01">ID IKU KOMPONEN</label>
-                                      <input value="{{$data->id}}" name="ID_IKU_MULTI_KOMPONEN" type="text" class="form-control" id="ID_IKU_MULTI_KOMPONEN" required readonly>
+                                      <label for="validationTooltip01">ID PENDING MATTERS</label>
+                                      <input value="{{$data->id}}" name="ID_PENDING_MATTERS_MULTI_KOMPONEN" type="text" class="form-control" id="ID_PENDING_MATTERS_MULTI_KOMPONEN" required readonly>
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Kode SS/IKU BAGIAN</label>
-                                      <input value="{{$data->KODE_SS}}" name="KODE_SS_KOMPONEN" type="text" class="form-control" id="KODE_SS_KOMPONEN" placeholder="Input Kode SS" required readonly>
+                                    <div class="col-md-12 mt-3">
+                                      <label for="validationTooltip01">Nama Pending Matters : {{$data->PENDING_MATTERS}}</label>
+                                     
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Sasaran Strategis BAGIAN</label>
-                                      <input name="SS_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Sasaran Strategis" required>
+                                    <div class="col-md-12 mt-3 mb-3">
+                                      <label for="PENDING_MATTERS_KOMPONEN">Pending Item Komponen</label>
+                                      <input name="PENDING_MATTERS_KOMPONEN" type="text" class="form-control" id="PENDING_MATTERS_KOMPONEN" placeholder="Input Pending Matters Komponen" required>
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Nama IKU BAGIAN</label>
-                                      <input name="IKU_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Nama IKU" required>
+
+                                     <div class="col-md-12 mt-3 mb-3">
+                                      <label for="UIC_KOMPONEN">UIC Komponen</label>
+                                      <input name="UIC_KOMPONEN" type="text" class="form-control" id="UIC_KOMPONEN" placeholder="Input Pending Matters Komponen" required>
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Definisi IKU BAGIAN</label>
-                                        <textarea  name="DEFINISI_IKU_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Definisi IKU" required></textarea>
+
+                                    <div class="col-md-12 mb-3" >
+                                      <label for="validationTooltip01">Realisasi</label>
+                                       <input step="any" name="CAPAIAN_AKTUAL_KOMPONEN" type="number" class="form-control" id="CAPAIAN_AKTUAL_KOMPONEN" placeholder="0.0 (Koma Pake Titik)" required>
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Formula IKU BAGIAN</label>
-                                       <textarea  name="FORMULA_IKU_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Formula IKU" required></textarea>
+                                    
+                                   
+
+                                  </div>
+                                  <div class="form-row">
+                                     <div class="col-md-12 mb-3">
+                                        <label for="PROGRES"  style="justify-content: center;display: flex;align-items: center; font-size: 15px; font-weight: 600">Progres</label>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                       <label for="KEGIATAN_YANG_TELAH_DILAKSANAKAN_KOMPONEN">Status</label>
+                                       <textarea  name="KEGIATAN_YANG_TELAH_DILAKSANAKAN_KOMPONEN" type="text" class="form-control" id="KEGIATAN_YANG_TELAH_DILAKSANAKAN_KOMPONEN" placeholder="Input Status" required></textarea>
                                       
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Komponen Pengukuran BAGIAN</label>
-                                      <input name="KOMPONEN_PENGUKURAN_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Komponen Pengukuran" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Penjelasan IKU/Komponen BAGIAN</label>
-                                      <textarea name="PENJELASAN_IKU_KOMPONEN_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Penjelasan IKU" required></textarea>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                      <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">UIC BAGIAN</label>
-                                      <input name="UIC_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input UIC name" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-
-                                  </div>
-                                  <div class="form-row">
                                     <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">TARGET BAGIAN Q1</label>
-                                      <input step="any" name="TARGET_Q1_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">CAPAIAN BAGIAN Q1</label>
-                                      <input step="any" name="CAPAIAN_Q1_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
+                                     <label for="PENJELASAN_CAPAIAN_KOMPONEN">Penjelasan</label>
+                                       <textarea  name="PENJELASAN_CAPAIAN_KOMPONEN" type="text" class="form-control" id="PENJELASAN_CAPAIAN_KOMPONEN" placeholder="Input Penjelasan" required></textarea>
+                                      
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
                                   </div>
                                   <div class="form-row">
+                                     <div class="col-md-12 mb-3">
+                                        <label for="TINDAK_LANJUT"  style="justify-content: center;display: flex;align-items: center; font-size: 15px; font-weight: 600">Tindak Lanjut</label>
+                                    </div>
                                     <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">TARGET BAGIAN Q2</label>
-                                      <input step="any" name="TARGET_Q2_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
+                                      <label for="RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI_KOMPONEN">Aktivitas Lanjutan</label>
+                                       <textarea  name="RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI_KOMPONEN" type="text" class="form-control" id="RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI_KOMPONEN" placeholder="Input Aktivitas Lanjutan" required></textarea>
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">CAPAIAN BAGIAN Q2</label>
-                                      <input step="any" name="CAPAIAN_Q2_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
+                                      <label for="PENJELASAN_PENDING_MATTERS_KOMPONEN_KOMPONEN">Jadwal Penyelesaian</label>
+                                      <textarea  name="PENJELASAN_PENDING_MATTERS_KOMPONEN_KOMPONEN" type="text" class="form-control" id="PENJELASAN_PENDING_MATTERS_KOMPONEN_KOMPONEN" placeholder="Input Jadwal Peyelesaian" required></textarea>
                                       <div class="valid-tooltip">
                                         Looks good!
                                       </div>
                                     </div> 
                                   </div>
-                                  <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">TARGET BAGIAN Q3</label>
-                                      <input step="any" name="TARGET_Q3_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">CAPAIAN BAGIAN Q3</label>
-                                      <input step="any" name="CAPAIAN_Q3_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">TARGET BAGIAN Q4</label>
-                                      <input step="any" name="TARGET_Q4_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">CAPAIAN BAGIAN Q4</label>
-                                      <input step="any" name="CAPAIAN_Q4_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">TARGET BAGIAN AKTUAL</label>
-                                      <input step="any" name="TARGET_AKTUAL_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="validationTooltip01">CAPAIAN BAGIAN AKTUAL</label>
-                                      <input step="any" name="CAPAIAN_AKTUAL_KOMPONEN" type="number" class="form-control" id="validationTooltip01" placeholder="0.0 (Koma Pake Titik)" required>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-
-                                  </div>
                                  
-                                  <div class="form-row">
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Penjelasan Capaian Bagian</label>
-                                      <textarea  name="PENJELASAN_CAPAIAN_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Penjelasan Capaian" required></textarea>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Kegiatan yang Telah Dilaksanakan Bagian</label>
-                                      <textarea  name="KEGIATAN_YANG_TELAH_DILAKSANAKAN_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Kegiatan yang sudah dilaksanakan" required></textarea>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Rencana Aksi dan Target Penyelesaian Rencana Aksi Bagian</label>
-                                      <textarea  name="RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Rencana Aksi" required></textarea>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="form-row">
-                                    <div class="col-md-12 mb-3">
-                                      <label for="validationTooltip01">Permasalahan Bagian</label>
-                                      <textarea  name="PERMASALAHAN_KOMPONEN" type="text" class="form-control" id="validationTooltip01" placeholder="Input Permasalahan" required></textarea>
-                                      <div class="valid-tooltip">
-                                        Looks good!
-                                      </div>
-                                    </div>
-                                  </div>
+                                 
                                   <button class="btn btn-block btn-primary mt-4" type="submit">Kirim</button>
                                   
                                 </form>
-                                <a href="{{route('home-admin.index')}}"><button class="btn btn-block btn-danger mt-2" type="submit">Batal</button></a>
+                                <a href="{{route('pending-matters-home.index')}}"><button class="btn btn-block btn-danger mt-2" type="submit">Batal</button></a>
                             </div>
                     </div>
 @endsection

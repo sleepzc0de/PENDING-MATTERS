@@ -37,7 +37,7 @@
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
-         {{-- @include('layouts.customizer') --}}
+         @include('layouts.customizer')
     {{-- <div class="chat-windows"></div> --}}
     @include('layouts.tail')
 </body>

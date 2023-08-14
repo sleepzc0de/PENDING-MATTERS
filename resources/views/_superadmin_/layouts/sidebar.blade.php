@@ -24,7 +24,20 @@
                             <i class="mdi mdi-dots-horizontal"></i>
                             <span class="hide-menu">PANEL ADMIN</span>
                         </li>
+                         <li class="sidebar-item">
+                                    <a href="{{route('pending-matters-capaian.index')}}" class="sidebar-link">
+                                        <i class="icon-Dashboard"></i>
+                                        <span class="hide-menu"> Capaian Pending Matters</span>
+                                    </a>
+                                </li>
                         <li class="sidebar-item">
+                                    <a href="{{route('pending-matters-home.index')}}" class="sidebar-link">
+                                        <i class="icon-Tactic"></i>
+                                        <span class="hide-menu"> Daftar Pending Matters</span>
+                                    </a>
+                        </li>
+                                
+                        {{-- <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{route('home-admin.index')}}" aria-expanded="false">
                                 <i class="mdi mdi-content-paste"></i>
                                 <span class="hide-menu">IKU</span>
@@ -35,6 +48,29 @@
                                 <i class="mdi mdi-content-paste"></i>
                                 <span class="hide-menu">CAPAIAN SASARAN STRATEGIS</span>
                             </a>
+                        </li> --}}
+                          {{-- <li class="sidebar-item">
+                            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                                <i class="icon-Car-Wheel"></i>
+                                <span class="hide-menu">Menu</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse  first-level">
+
+                                <li class="sidebar-item">
+                                    <a href="{{route('pending-matters-home.index')}}" class="sidebar-link">
+                                        <i class="icon-Record"></i>
+                                        <span class="hide-menu"> Daftar Pending Matters</span>
+                                    </a>
+                                </li>
+
+                                 <li class="sidebar-item">
+                                    <a href="{{route('pending-matters-home.index')}}" class="sidebar-link">
+                                        <i class="icon-Record"></i>
+                                        <span class="hide-menu"> Capaian Pending Matters</span>
+                                    </a>
+                                </li> --}}
+
+                            </ul>
                         </li>
                     </ul>
                 </nav>

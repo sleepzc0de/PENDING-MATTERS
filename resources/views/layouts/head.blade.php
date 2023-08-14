@@ -3,12 +3,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Pending Matters Biro Manajemen BMN dan Pengadaan, Kementerian Keuangan Republik Indonesia">
+    <meta name="author" content="Auliya Putra Azhari">
     <!-- Favicon icon -->
     {{-- <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}"> --}}
     <link rel="icon" type="image/x-icon" href="https://oa.kemenkeu.go.id/favicon.ico">
-    <title>Dashboard IKU Romadan</title>
+    <title>Dashboard PM Romadan</title>
     <!-- Custom CSS -->
     <link href="{{asset('assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
     <link href="{{asset('assets/extra-libs/c3/c3.min.css')}}" rel="stylesheet">

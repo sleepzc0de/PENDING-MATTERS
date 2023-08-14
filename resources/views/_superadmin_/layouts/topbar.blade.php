@@ -19,16 +19,16 @@
                             {{-- <img src="{{asset('assets/images/logo-icon.png')}}" alt="homepage" class="dark-logo" /> --}}
                             <!-- Light Logo icon -->
                             {{-- <img src="{{asset('assets/images/logo-light-icon.png')}}" alt="homepage" class="light-logo" /> --}}
-                            <h2>DI</h2>
+                            <h2>PM</h2>
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span class="logo-text">
+                        <span class="logo-text ml-3">
                             <!-- dark Logo text -->
                             {{-- <img src="{{asset('assets/images/logo-text.png')}}" alt="homepage" class="dark-logo" /> --}}
                             <!-- Light Logo text -->
                             {{-- <img src="{{asset('assets/images/logo-light-text.png')}}" class="light-logo" alt="homepage" /> --}}
-                              <h3>DASHBOARD IKU</h3>
+                              <h5>PENDING MATTERS <br>ROMADAN</h5>
                         </span>
                     </a>
                     <!-- ============================================================== -->

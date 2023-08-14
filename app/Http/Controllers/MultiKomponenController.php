@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Iku;
+use App\Models\PendingMattersModel;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class MultiKomponenController extends Controller
     public function index()
     {
         $menuUsers = 'active';
-        $query = Iku::select('*')->where('FLAG_KOMPONEN', 'MULTI_KOMPONEN');
+        $query = PendingMattersModel::select('*')->where('FLAG_KOMPONEN', 'MULTI_KOMPONEN');
         if (request()->ajax()) {
             return datatables()->of($query)
                 ->addColumn('opsi', function ($query) {
@@ -25,7 +26,7 @@ class MultiKomponenController extends Controller
                     $daftar_komponen = route('daftar-komponen.show', $query->id);
                     $edit = route('multi_komponen.edit', $query->id);
                     $hapus = route('multi_komponen.destroy', $query->id);
-                    $addkomponen = route('multi_komponen_detail_admin', $query->id);
+                    $addkomponen = route('multi_komponen_detail_admin_pm', $query->id);
                     return '<div class="d-inline-flex">
                     
 
@@ -126,7 +127,7 @@ class MultiKomponenController extends Controller
                                              <label class="mt-2" for="NamaIKU">Rencana Aksi dan Target Penyelesaian Rencana Aksi</label>
                                              <textarea class="form-control" rows="3" placeholder="' . $query->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI . '" readonly></textarea>
 
-                                            <label class="mt-2" for="NamaIKU">Permasalahan</label>
+                                            <label class="mt-2" for="PENJELASAN_PENDING_MATTERS_KOMPONEN_KOMPONEN">Permasalahan</label>
                                               <textarea class="form-control" rows="3" placeholder="' . $query->PERMASALAHAN . '" readonly></textarea>
                                               --!>
                                                
@@ -141,7 +142,7 @@ class MultiKomponenController extends Controller
                                 </div>
                                 <!-- /.modal -->
                                 
-                                 <a href="#" alt="default" data-toggle="modal" data-target="#myModal_' . $query->id . '" class="model_img img-fluid"><button type="button" class="ml-1 btn btn-info" data-toggle="tooltip" data-placement="top" title="Preview IKU"><i class="fa fas fa-eye"></i></button></a>
+                                
 
                                  <a href="' . $daftar_komponen . '"><button type="button" class="ml-1 btn btn-success" data-toggle="tooltip" data-placement="top" title="Preview Daftar Komponen"><i class="fa fas fa-eye"></i></button></a>
                                                         
@@ -187,66 +188,29 @@ class MultiKomponenController extends Controller
         try {
             // VALIDASI DATA
             $request->validate([
-                'KODE_SS' => 'required',
-                'SS' => 'required',
-                'IKU' => 'required',
-                'DEFINISI_IKU' => 'required',
-                'FORMULA_IKU' => 'required',
-                'KOMPONEN_PENGUKURAN' => 'required',
-                'PENJELASAN_IKU_KOMPONEN' => 'required',
+                'PENDING_MATTERS' => 'required',
                 'UIC' => 'required',
-                'TARGET_Q1' => 'required',
-                'TARGET_Q2' => 'required',
-                'TARGET_Q3' => 'required',
-                'TARGET_Q4' => 'required',
-                'CAPAIAN_Q1' => 'required',
-                'CAPAIAN_Q2' => 'required',
-                'CAPAIAN_Q3' => 'required',
-                'CAPAIAN_Q4' => 'required',
-                'TARGET_AKTUAL' => 'required',
                 'CAPAIAN_AKTUAL' => 'required',
-                // 'PENJELASAN_CAPAIAN' => 'required',
-                // 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => 'required',
-                // 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => 'required',
-                // 'PERMASALAHAN' => 'required',
+                'TARGET_AKTUAL' => 'required',
 
 
             ]);
-
             // TAMPUNGAN REQUEST DATA DARI FORM
             $data = [
-                'KODE_SS' => $request->KODE_SS,
-                'SS' => $request->SS,
-                'IKU' => $request->IKU,
-                'DEFINISI_IKU' => $request->DEFINISI_IKU,
-                'FORMULA_IKU' => $request->FORMULA_IKU,
-                'KOMPONEN_PENGUKURAN' => $request->KOMPONEN_PENGUKURAN,
-                'PENJELASAN_IKU_KOMPONEN' => $request->PENJELASAN_IKU_KOMPONEN,
+                'PENDING_MATTERS' => $request->PENDING_MATTERS,
                 'UIC' => $request->UIC,
-                'TARGET_Q1' => $request->TARGET_Q1,
-                'TARGET_Q2' => $request->TARGET_Q2,
-                'TARGET_Q3' => $request->TARGET_Q3,
-                'TARGET_Q4' => $request->TARGET_Q4,
-                'CAPAIAN_Q1' => $request->CAPAIAN_Q1,
-                'CAPAIAN_Q2' => $request->CAPAIAN_Q2,
-                'CAPAIAN_Q3' => $request->CAPAIAN_Q3,
-                'CAPAIAN_Q4' => $request->CAPAIAN_Q4,
-                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'CAPAIAN_AKTUAL' => $request->CAPAIAN_AKTUAL,
-                // 'PENJELASAN_CAPAIAN' => $request->PENJELASAN_CAPAIAN,
-                // 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => $request->KEGIATAN_YANG_TELAH_DILAKSANAKAN,
-                // 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => $request->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI,
-                // 'PERMASALAHAN' => $request->PERMASALAHAN,
+                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'FLAG_KOMPONEN' => 'MULTI_KOMPONEN'
 
             ];
 
-            Iku::create($data);
+            PendingMattersModel::create($data);
 
             //redirect to index
-            return redirect()->back()->with(['success' => 'Data IKU Berhasil Disimpan!']);
+            return redirect()->back()->with(['success' => 'Data Pending Item Multi Komponen Berhasil Disimpan!']);
         } catch (Exception $e) {
-            return redirect()->back()->with(['failed' => 'Data IKU Gagal Disimpan! error :' . $e->getMessage()]);
+            return redirect()->back()->with(['failed' => 'Data Pending Item Multi Komponen Gagal Disimpan! error :' . $e->getMessage()]);
         }
     }
 
@@ -273,9 +237,9 @@ class MultiKomponenController extends Controller
     public function edit($id)
     {
         // $kategori = ref_kategori::all();
-        $iku = Iku::where('FLAG_KOMPONEN', 'MULTI_KOMPONEN')->findOrFail($id);
+        $iku = PendingMattersModel::where('FLAG_KOMPONEN', 'MULTI_KOMPONEN')->findOrFail($id);
         // dd($berita);
-        return view('_superadmin_.edit_iku_multi_komponen', compact(['iku']));
+        return view('_superadmin_._pm_.edit_pm_multi_komponen', compact(['iku']));
     }
 
     /**
@@ -290,65 +254,28 @@ class MultiKomponenController extends Controller
         try {
             // VALIDASI DATA
             $request->validate([
-                'KODE_SS' => 'required',
-                'SS' => 'required',
-                'IKU' => 'required',
-                'DEFINISI_IKU' => 'required',
-                'FORMULA_IKU' => 'required',
-                'KOMPONEN_PENGUKURAN' => 'required',
-                'PENJELASAN_IKU_KOMPONEN' => 'required',
+                'PENDING_MATTERS' => 'required',
                 'UIC' => 'required',
-                'TARGET_Q1' => 'required',
-                'TARGET_Q2' => 'required',
-                'TARGET_Q3' => 'required',
-                'TARGET_Q4' => 'required',
-                'CAPAIAN_Q1' => 'required',
-                'CAPAIAN_Q2' => 'required',
-                'CAPAIAN_Q3' => 'required',
-                'CAPAIAN_Q4' => 'required',
-                'TARGET_AKTUAL' => 'required',
                 'CAPAIAN_AKTUAL' => 'required',
-                // 'PENJELASAN_CAPAIAN' => 'required',
-                // 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => 'required',
-                // 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => 'required',
-                // 'PERMASALAHAN' => 'required',
+                'TARGET_AKTUAL' => 'required',
+
 
 
             ]);
-
             // TAMPUNGAN REQUEST DATA DARI FORM
             $data = [
-                'KODE_SS' => $request->KODE_SS,
-                'SS' => $request->SS,
-                'IKU' => $request->IKU,
-                'DEFINISI_IKU' => $request->DEFINISI_IKU,
-                'FORMULA_IKU' => $request->FORMULA_IKU,
-                'KOMPONEN_PENGUKURAN' => $request->KOMPONEN_PENGUKURAN,
-                'PENJELASAN_IKU_KOMPONEN' => $request->PENJELASAN_IKU_KOMPONEN,
+                'PENDING_MATTERS' => $request->PENDING_MATTERS,
                 'UIC' => $request->UIC,
-                'TARGET_Q1' => $request->TARGET_Q1,
-                'TARGET_Q2' => $request->TARGET_Q2,
-                'TARGET_Q3' => $request->TARGET_Q3,
-                'TARGET_Q4' => $request->TARGET_Q4,
-                'CAPAIAN_Q1' => $request->CAPAIAN_Q1,
-                'CAPAIAN_Q2' => $request->CAPAIAN_Q2,
-                'CAPAIAN_Q3' => $request->CAPAIAN_Q3,
-                'CAPAIAN_Q4' => $request->CAPAIAN_Q4,
-                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'CAPAIAN_AKTUAL' => $request->CAPAIAN_AKTUAL,
-                // 'PENJELASAN_CAPAIAN' => $request->PENJELASAN_CAPAIAN,
-                // 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => $request->KEGIATAN_YANG_TELAH_DILAKSANAKAN,
-                // 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => $request->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI,
-                // 'PERMASALAHAN' => $request->PERMASALAHAN,
-                'FLAG_KOMPONEN' => 'MULTI_KOMPONEN'
+                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
 
             ];
 
-            Iku::where('FLAG_KOMPONEN', 'MULTI_KOMPONEN')->findOrFail($id)->update($data);
+            PendingMattersModel::where('FLAG_KOMPONEN', 'MULTI_KOMPONEN')->findOrFail($id)->update($data);
             // $berita = Berita::find($id)->update($data);
-            return redirect()->route('home-admin.index')->with('success', "IKU Multi Komponen berhasil diupdate!");
+            return redirect()->route('pending-matters-home.index')->with('success', "Pending Matters Multi Komponen berhasil diupdate!");
         } catch (Exception $e) {
-            return redirect()->route('home-admin.index')->with(['failed' => 'Data IKU Multi Komponen Gagal Di Update! error :' . $e->getMessage()]);
+            return redirect()->route('pending-matters-home.index')->with(['failed' => 'Data Pending Matters Multi Komponen Gagal Di Update! error :' . $e->getMessage()]);
         }
     }
 
@@ -361,10 +288,10 @@ class MultiKomponenController extends Controller
     public function destroy($id)
     {
         try {
-            Iku::where('FLAG_KOMPONEN', 'MULTI_KOMPONEN')->findOrFail($id)->delete();
-            return redirect()->route('home-admin.index')->with('success', "IKU berhasil dihapus!");
+            PendingMattersModel::where('FLAG_KOMPONEN', 'MULTI_KOMPONEN')->findOrFail($id)->delete();
+            return redirect()->route('pending-matters-home.index')->with('success', "Pending Matters berhasil dihapus!");
         } catch (Exception $e) {
-            return redirect()->route('home-admin.index')->with(['failed' => 'Data Yang Dihapus Tidak Ada ! error :' . $e->getMessage()]);
+            return redirect()->route('pending-matters-home.index')->with(['failed' => 'Data Yang Dihapus Tidak Ada ! error :' . $e->getMessage()]);
         }
     }
 }

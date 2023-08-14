@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Iku;
+use App\Models\PendingMattersModel;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class SatuKomponenController extends Controller
     public function index()
     {
         $menuUsers = 'active';
-        $query = Iku::select('*')->where('FLAG_KOMPONEN', 'SATU_KOMPONEN');
+        $query = PendingMattersModel::select('*')->where('FLAG_KOMPONEN', 'SATU_KOMPONEN');
         if (request()->ajax()) {
             return datatables()->of($query)
                 ->addColumn('opsi', function ($query) {
@@ -33,101 +34,55 @@ class SatuKomponenController extends Controller
                                     <div class="modal-dialog modal-xl">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h4 style="text-align-center" class="modal-title" id="myModalLabel">Detail Indikator Kinerja Utama</h4>
+                                                <h4 style="text-align-center" class="modal-title" id="myModalLabel">PENDING ITEM  : ' . $query->PENDING_MATTERS . '</h4>
+                                                <br>
                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                             </div>
                                             <div class="modal-body">
 
-                                            <label  for="NamaIKU">Kode SS/IKU</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->KODE_SS . '" disabled>
-
-                                            <label  for="NamaIKU">Nama IKU</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->IKU . '" disabled>
-
-                                            <label class="mt-2" for="DefinisiIKU">Definisi IKU</label>
-                                            <textarea class="form-control" rows="3" placeholder="' . $query->DEFINISI_IKU . '" disabled></textarea>
-
-                                            <label class="mt-2" for="FormulaIKU">Formula IKU</label>
-                                            <textarea class="form-control" rows="3" placeholder="' . $query->FORMULA_IKU . '" disabled></textarea>
-
-                                            <label class="mt-2" for="NamaIKU">Komponen Pengukuran</label>
-                                            <textarea class="form-control" rows="3" placeholder="' . $query->KOMPONEN_PENGUKURAN . '" disabled></textarea>
-
-
-                                            <label class="mt-2" for="NamaIKU">Penjelasan IKU / Komponen</label>
-                                            <textarea class="form-control" rows="3" placeholder="' . $query->PENJELASAN_IKU_KOMPONEN . '" disabled></textarea>
-
-                                            <label class="mt-2" for="NamaIKU">UIC</label>
+                                            <div class="mt-2">
+                                            <label  for="NamaIKU" style="justify-content: left;display: flex;align-items: left;">Pending Item</label>
+                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->PENDING_MATTERS . '" disabled>
+                                            </div>
+                                            <div class="mt-2">
+                                            <label  for="NamaIKU" style="justify-content: left;display: flex;align-items: left;">Unit In Charge</label>
                                             <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->UIC . '" disabled>
-
-                                            <div class="row">
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Target Q1</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->TARGET_Q1 . '" disabled>
                                             </div>
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Capaian Q1</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->CAPAIAN_Q1 . '" disabled>
-                                            </div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Target Q2</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->TARGET_Q2 . '" disabled>
-                                            </div>
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Capaian Q2</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->CAPAIAN_Q2 . '" disabled>
-                                            </div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Target Q3</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->TARGET_Q3 . '" disabled>
-                                            </div>
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Capaian Q3</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->CAPAIAN_Q3 . '" disabled>
-                                            </div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Target Q4</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->TARGET_Q4 . '" disabled>
-                                            </div>
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Capaian Q4</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->CAPAIAN_Q4 . '" disabled>
-                                            </div>
-                                            </div>
-
-                                            <div class="row">
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Target Aktual</label>
-                                            <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->TARGET_AKTUAL . '" disabled>
-                                            </div>
-                                            <div class="col-lg-6">
-                                            <label class="mt-2" for="NamaIKU">Capaian Aktual</label>
+                                            <div class="mt-2">
+                                             <label  for="NamaIKU" style="justify-content: left;display: flex;align-items: left;">Realisasi</label>
                                             <input type="text" class="form-control" id="NamaIKU" placeholder="' . $query->CAPAIAN_AKTUAL . '" disabled>
                                             </div>
+                                
+
+                                            <div class="row mt-2">
+                                            <div class="col-md-12">
+                                        <label for="PROGRESS"  style="justify-content: center;display: flex;align-items: center; font-size: 15px; font-weight: 600">Progres</label>
+                                    </div>
+                                            <div class="col-lg-6">
+                                            <label class="mt-2" for="NamaIKU">Status</label>
+                                              <textarea class="form-control" rows="3" placeholder="' . $query->KEGIATAN_YANG_TELAH_DILAKSANAKAN . '" disabled></textarea>
                                             </div>
-                                           
+                                            <div class="col-lg-6">
+                                            <label class="mt-2" for="NamaIKU">Penjelasan</label>
+                                              <textarea class="form-control" rows="3" placeholder="' . $query->PENJELASAN_CAPAIAN . '" disabled></textarea>
+                                            </div>
+                                            </div>
 
-                                             <label class="mt-2" for="NamaIKU">Penjelasan Capaian</label>
-                                             <textarea class="form-control" rows="3" placeholder="' . $query->PENJELASAN_CAPAIAN . '" disabled></textarea>
+                                            <div class="row mt-2">
+                                            <div class="col-md-12">
+                                        <label for="TINDAK_LANJUT"  style="justify-content: center;display: flex;align-items: center; font-size: 15px; font-weight: 600">Tindak Lanjut</label>
+                                    </div>
+                                            <div class="col-lg-6">
+                                            <label class="mt-2" for="NamaIKU">Aktivitas Lanjutan</label>
+                                              <textarea class="form-control" rows="3" placeholder="' . $query->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI . '" disabled></textarea>
+                                            </div>
+                                            <div class="col-lg-6">
+                                           <label class="mt-2" for="NamaIKU">Jadwal Penyelesaian</label>
+                                              <textarea class="form-control" rows="3" placeholder="' . $query->PENJELASAN_PENDING_MATTERS_KOMPONEN . '" disabled></textarea>
+                                            </div>
+                                            </div>
 
-                                            <label class="mt-2" for="NamaIKU">Kegiatan Yang Telah Dilaksanakan</label>
-                                             <textarea class="form-control" rows="3" placeholder="' . $query->KEGIATAN_YANG_TELAH_DILAKSANAKAN . '" disabled></textarea>
-
-                                             <label class="mt-2" for="NamaIKU">Rencana Aksi dan Target Penyelesaian Rencana Aksi</label>
-                                             <textarea class="form-control" rows="3" placeholder="' . $query->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI . '" disabled></textarea>
-
-                                            <label class="mt-2" for="NamaIKU">Permasalahan</label>
-                                              <textarea class="form-control" rows="3" placeholder="' . $query->PERMASALAHAN . '" disabled></textarea>
-                                               
+                                            
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-info waves-effect" data-dismiss="modal">Close</button>
@@ -156,7 +111,7 @@ class SatuKomponenController extends Controller
                 ->addIndexColumn()
                 ->make(true);
         }
-        return view('_superadmin_.index');
+        return view('_superadmin_._pm_.index');
     }
 
     /**
@@ -167,7 +122,7 @@ class SatuKomponenController extends Controller
     public function create()
     {
         // $kategori = ref_kategori::get();
-        return view('_superadmin_.create');
+        return view('_superadmin_._pm_.create');
     }
 
     /**
@@ -182,66 +137,38 @@ class SatuKomponenController extends Controller
         try {
             // VALIDASI DATA
             $request->validate([
-                'KODE_SS' => 'required',
-                'SS' => 'required',
-                'IKU' => 'required',
-                'DEFINISI_IKU' => 'required',
-                'FORMULA_IKU' => 'required',
-                'KOMPONEN_PENGUKURAN' => 'required',
-                'PENJELASAN_IKU_KOMPONEN' => 'required',
+                'PENDING_MATTERS' => 'required',
                 'UIC' => 'required',
-                'TARGET_Q1' => 'required',
-                'TARGET_Q2' => 'required',
-                'TARGET_Q3' => 'required',
-                'TARGET_Q4' => 'required',
-                'CAPAIAN_Q1' => 'required',
-                'CAPAIAN_Q2' => 'required',
-                'CAPAIAN_Q3' => 'required',
-                'CAPAIAN_Q4' => 'required',
-                'TARGET_AKTUAL' => 'required',
                 'CAPAIAN_AKTUAL' => 'required',
-                'PENJELASAN_CAPAIAN' => 'required',
+                'TARGET_AKTUAL' => 'required',
                 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => 'required',
+                'PENJELASAN_CAPAIAN' => 'required',
                 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => 'required',
-                'PERMASALAHAN' => 'required',
+                'PENJELASAN_PENDING_MATTERS_KOMPONEN' => 'required',
 
 
             ]);
 
             // TAMPUNGAN REQUEST DATA DARI FORM
             $data = [
-                'KODE_SS' => $request->KODE_SS,
-                'SS' => $request->SS,
-                'IKU' => $request->IKU,
-                'DEFINISI_IKU' => $request->DEFINISI_IKU,
-                'FORMULA_IKU' => $request->FORMULA_IKU,
-                'KOMPONEN_PENGUKURAN' => $request->KOMPONEN_PENGUKURAN,
-                'PENJELASAN_IKU_KOMPONEN' => $request->PENJELASAN_IKU_KOMPONEN,
+                'PENDING_MATTERS' => $request->PENDING_MATTERS,
                 'UIC' => $request->UIC,
-                'TARGET_Q1' => $request->TARGET_Q1,
-                'TARGET_Q2' => $request->TARGET_Q2,
-                'TARGET_Q3' => $request->TARGET_Q3,
-                'TARGET_Q4' => $request->TARGET_Q4,
-                'CAPAIAN_Q1' => $request->CAPAIAN_Q1,
-                'CAPAIAN_Q2' => $request->CAPAIAN_Q2,
-                'CAPAIAN_Q3' => $request->CAPAIAN_Q3,
-                'CAPAIAN_Q4' => $request->CAPAIAN_Q4,
-                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'CAPAIAN_AKTUAL' => $request->CAPAIAN_AKTUAL,
-                'PENJELASAN_CAPAIAN' => $request->PENJELASAN_CAPAIAN,
+                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => $request->KEGIATAN_YANG_TELAH_DILAKSANAKAN,
+                'PENJELASAN_CAPAIAN' => $request->PENJELASAN_CAPAIAN,
                 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => $request->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI,
-                'PERMASALAHAN' => $request->PERMASALAHAN,
+                'PENJELASAN_PENDING_MATTERS_KOMPONEN' => $request->PENJELASAN_PENDING_MATTERS_KOMPONEN,
                 'FLAG_KOMPONEN' => 'SATU_KOMPONEN'
 
             ];
 
-            Iku::create($data);
+            PendingMattersModel::create($data);
 
             //redirect to index
-            return redirect()->back()->with(['success' => 'Data IKU Berhasil Disimpan!']);
+            return redirect()->back()->with(['success' => 'Data Pending Matters Berhasil Disimpan!']);
         } catch (Exception $e) {
-            return redirect()->back()->with(['failed' => 'Data IKU Gagal Disimpan! error :' . $e->getMessage()]);
+            return redirect()->back()->with(['failed' => 'Data Pending Matters Gagal Disimpan! error :' . $e->getMessage()]);
         }
     }
 
@@ -268,9 +195,9 @@ class SatuKomponenController extends Controller
     public function edit($id)
     {
         // $kategori = ref_kategori::all();
-        $iku = Iku::where('FLAG_KOMPONEN', 'SATU_KOMPONEN')->findOrFail($id);
+        $pm = PendingMattersModel::where('FLAG_KOMPONEN', 'SATU_KOMPONEN')->findOrFail($id);
         // dd($berita);
-        return view('_superadmin_.edit_iku_satu_komponen', compact(['iku']));
+        return view('_superadmin_._pm_.edit_pm_satu_komponen', compact(['pm']));
     }
 
     /**
@@ -283,67 +210,40 @@ class SatuKomponenController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
             // VALIDASI DATA
             $request->validate([
-                'KODE_SS' => 'required',
-                'SS' => 'required',
-                'IKU' => 'required',
-                'DEFINISI_IKU' => 'required',
-                'FORMULA_IKU' => 'required',
-                'KOMPONEN_PENGUKURAN' => 'required',
-                'PENJELASAN_IKU_KOMPONEN' => 'required',
+                'PENDING_MATTERS' => 'required',
                 'UIC' => 'required',
-                'TARGET_Q1' => 'required',
-                'TARGET_Q2' => 'required',
-                'TARGET_Q3' => 'required',
-                'TARGET_Q4' => 'required',
-                'CAPAIAN_Q1' => 'required',
-                'CAPAIAN_Q2' => 'required',
-                'CAPAIAN_Q3' => 'required',
-                'CAPAIAN_Q4' => 'required',
-                'TARGET_AKTUAL' => 'required',
                 'CAPAIAN_AKTUAL' => 'required',
-                'PENJELASAN_CAPAIAN' => 'required',
+                'TARGET_AKTUAL' => 'required',
                 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => 'required',
+                'PENJELASAN_CAPAIAN' => 'required',
                 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => 'required',
-                'PERMASALAHAN' => 'required',
+                'PENJELASAN_PENDING_MATTERS_KOMPONEN' => 'required',
 
 
             ]);
 
             // TAMPUNGAN REQUEST DATA DARI FORM
             $data = [
-                'KODE_SS' => $request->KODE_SS,
-                'SS' => $request->SS,
-                'IKU' => $request->IKU,
-                'DEFINISI_IKU' => $request->DEFINISI_IKU,
-                'FORMULA_IKU' => $request->FORMULA_IKU,
-                'KOMPONEN_PENGUKURAN' => $request->KOMPONEN_PENGUKURAN,
-                'PENJELASAN_IKU_KOMPONEN' => $request->PENJELASAN_IKU_KOMPONEN,
+                'PENDING_MATTERS' => $request->PENDING_MATTERS,
                 'UIC' => $request->UIC,
-                'TARGET_Q1' => $request->TARGET_Q1,
-                'TARGET_Q2' => $request->TARGET_Q2,
-                'TARGET_Q3' => $request->TARGET_Q3,
-                'TARGET_Q4' => $request->TARGET_Q4,
-                'CAPAIAN_Q1' => $request->CAPAIAN_Q1,
-                'CAPAIAN_Q2' => $request->CAPAIAN_Q2,
-                'CAPAIAN_Q3' => $request->CAPAIAN_Q3,
-                'CAPAIAN_Q4' => $request->CAPAIAN_Q4,
-                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'CAPAIAN_AKTUAL' => $request->CAPAIAN_AKTUAL,
-                'PENJELASAN_CAPAIAN' => $request->PENJELASAN_CAPAIAN,
+                'TARGET_AKTUAL' => $request->TARGET_AKTUAL,
                 'KEGIATAN_YANG_TELAH_DILAKSANAKAN' => $request->KEGIATAN_YANG_TELAH_DILAKSANAKAN,
+                'PENJELASAN_CAPAIAN' => $request->PENJELASAN_CAPAIAN,
                 'RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI' => $request->RENCANA_AKSI_DAN_TARGET_PENYELESAIAN_RENCANA_AKSI,
-                'PERMASALAHAN' => $request->PERMASALAHAN,
+                'PENJELASAN_PENDING_MATTERS_KOMPONEN' => $request->PENJELASAN_PENDING_MATTERS_KOMPONEN,
                 'FLAG_KOMPONEN' => 'SATU_KOMPONEN'
 
             ];
 
-            Iku::where('FLAG_KOMPONEN', 'SATU_KOMPONEN')->findOrFail($id)->update($data);
+            PendingMattersModel::where('FLAG_KOMPONEN', 'SATU_KOMPONEN')->findOrFail($id)->update($data);
             // $berita = Berita::find($id)->update($data);
-            return redirect()->route('home-admin.index')->with('success', "IKU berhasil diupdate!");
+            return redirect()->route('pending-matters-home.index')->with('success', "Pending Item berhasil diupdate!");
         } catch (Exception $e) {
-            return redirect()->route('home-admin.index')->with(['failed' => 'Data IKU Gagal Di Update! error :' . $e->getMessage()]);
+            return redirect()->route('pending-matters-home.index')->with(['failed' => 'Data Pending Item Gagal Di Update! error :' . $e->getMessage()]);
         }
     }
 
@@ -356,10 +256,10 @@ class SatuKomponenController extends Controller
     public function destroy($id)
     {
         try {
-            Iku::where('FLAG_KOMPONEN', 'SATU_KOMPONEN')->findOrFail($id)->delete();
-            return redirect()->route('home-admin.index')->with('success', "IKU berhasil dihapus!");
+            PendingMattersModel::where('FLAG_KOMPONEN', 'SATU_KOMPONEN')->findOrFail($id)->delete();
+            return redirect()->route('pending-matters-home.index')->with('success', "Data Pending Item berhasil dihapus!");
         } catch (Exception $e) {
-            return redirect()->route('home-admin.index')->with(['failed' => 'Data Yang Dihapus Tidak Ada ! error :' . $e->getMessage()]);
+            return redirect()->route('pending-matters-home.index')->with(['failed' => 'Data Pending Item Yang Dihapus Tidak Ada ! error :' . $e->getMessage()]);
         }
     }
 }

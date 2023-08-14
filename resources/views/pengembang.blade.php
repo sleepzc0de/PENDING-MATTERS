@@ -2,6 +2,17 @@
 
 @section('css')
   <link rel="stylesheet" type="text/css" href="{{asset('assets/extra-libs/prism/prism.css')}}">
+  <style>
+    .card-group {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px; /* Adjust this value to control the gap between cards */
+    }
+    
+    .card {
+        flex: 1;
+    }
+</style>
 @endsection
 
 

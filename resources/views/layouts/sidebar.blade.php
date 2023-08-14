@@ -13,7 +13,7 @@
                             <div class="user-profile dropdown m-t-20">
                                 <div class="user-content hide-menu m-t-10">
                                     <img src="{{asset('assets/images/romadan/logo_4.png')}}" class="light-logo" alt="homepage" width="220px" />
-                                    <div class="dropdown-menu animated flipInY" aria-labelledby="User">
+                                    {{-- <div class="dropdown-menu animated flipInY" aria-labelledby="User">
                                         <a class="dropdown-item" href="javascript:void(0)">
                                             <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
                                         <a class="dropdown-item" href="javascript:void(0)">
@@ -26,7 +26,7 @@
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="javascript:void(0)">
                                             <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                             <!-- End User Profile-->
@@ -81,28 +81,17 @@
                                 <span class="hide-menu">Home </span>
                             </a>
                             <ul aria-expanded="false" class="collapse  first-level">
-                                {{-- <li class="sidebar-item">
-                                    <a href="{{route('capaian-perspective')}}" class="sidebar-link">
+
+                                <li class="sidebar-item">
+                                    <a href="{{route('capaian-pm-fe')}}" class="sidebar-link">
                                         <i class="icon-Record"></i>
-                                        <span class="hide-menu"> Capaian Perspective </span>
-                                    </a>
-                                </li> --}}
-                                  <li class="sidebar-item">
-                                    <a href="{{route('capaian-sasaran-new')}}" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu"> Capaian Strategis </span>
+                                        <span class="hide-menu"> Capaian Pending Matters</span>
                                     </a>
                                 </li>
-                               {{-- <li class="sidebar-item">
-                                    <a href="{{route('capaian-sasaran')}}" class="sidebar-link">
+                                <li class="sidebar-item">
+                                    <a href="{{route('daftar-pm-fe')}}" class="sidebar-link">
                                         <i class="icon-Record"></i>
-                                        <span class="hide-menu"> Capaian Strategis </span>
-                                    </a>
-                                </li> --}}
-                                 <li class="sidebar-item">
-                                    <a href="{{route('grafik.iku')}}" class="sidebar-link">
-                                        <i class="icon-Record"></i>
-                                        <span class="hide-menu"> Daftar Iku </span>
+                                        <span class="hide-menu"> Daftar Pending Matters</span>
                                     </a>
                                 </li>
 
