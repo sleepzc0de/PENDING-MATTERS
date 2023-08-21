@@ -24,14 +24,27 @@ use Illuminate\Support\Facades\Route;
 
 
 // FRONTENDS
-Route::get('/', [FrontendController::class, 'daftar_pm_fe'])->name('daftar-pm-fe');
+// Route::get('/testframe', [FrontendController::class, 'testframe'])->name('frametest');
+Route::get('/', [FrontendController::class, 'daftar_pm_fe'])->name('home-awal');
+// Route::get('/daftar-iku', [FrontendController::class, 'grafik'])->name('daftar-iku');
+// Route::get('/capaian-sasaran', [FrontendController::class, 'capaian_sasaran'])->name('capaian-sasaran');
+// Route::get('/capaian-perspective', [FrontendController::class, 'capaian_perspective'])->name('capaian-perspective');
+
+
 Route::get('/daftar-komponen/{id}', [FrontendController::class, 'show'])->name('daftar-komponen-fe');
+
+// Route::get('/capaian-sasaran-strategis', [FrontendController::class, 'capaian_sasaran_new'])->name('capaian-sasaran-new');
+// Route::get('/kinerja-q1', [FrontendController::class, 'kinerja_Q1'])->name('kinerja_iku_q1');
+// Route::get('/kinerja-q2', [FrontendController::class, 'kinerja_Q2'])->name('kinerja_iku_q2');
+// Route::get('/kinerja-q3', [FrontendController::class, 'kinerja_Q3'])->name('kinerja_iku_q3');
+// Route::get('/kinerja-q4', [FrontendController::class, 'kinerja_Q4'])->name('kinerja_iku_q4');
 Route::get('/pengembang', [FrontendController::class, 'pengembang'])->name('tim-pengembang');
 
 
 // NEW FE PM
-// Route::get('/daftar-pending-matters', [FrontendController::class, 'daftar_pm_fe'])->name('daftar-pm-fe');
+Route::get('/daftar-pending-matters', [FrontendController::class, 'daftar_pm_fe'])->name('daftar-pm-fe');
 Route::get('/capaian-pending-matters', [FrontendController::class, 'capaian_pm_fe'])->name('capaian-pm-fe');
+
 
 
 
@@ -42,10 +55,10 @@ Route::get('/capaian-pending-matters', [FrontendController::class, 'capaian_pm_f
 //     function () {
 //     }
 // );
-
 Route::group(['prefix' => '_superadmin_', 'middleware' => ['auth']], function () {
 
-    Route::resource('home-admin', AdminController::class)->middleware('auth');
+
+    // Route::resource('home-admin', AdminController::class)->middleware('auth');
     // Route::resource('capaian-sasaran-strategis', CapaianSasaranStrategisController::class)->middleware('auth');
     Route::resource('satu_komponen', SatuKomponenController::class)->middleware('auth');
     Route::resource('multi_komponen', MultiKomponenController::class)->middleware('auth');

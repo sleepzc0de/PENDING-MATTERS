@@ -146,7 +146,7 @@ $('#satu_komponen').DataTable({
                 text: '<i class="mdi mdi-10px mdi-file-excel-box"></i> Tambah IKU',
                 className: 'btn btn-outline-success btn-rounded waves-effect waves-light',
                 action: function(e, dt, button, config) {
-                    window.location = "{{route('satu_komponen_iku_admin')}}";
+                    window.location = "{{route('satu_komponen_pm_admin')}}";
                 }
             },
             ],
@@ -181,7 +181,7 @@ $('#multi_komponen').DataTable({
                 text: '<i class="mdi mdi-10px mdi-file-excel-box"></i> Tambah IKU',
                 className: 'btn btn-outline-primary btn-rounded waves-effect waves-light',
                 action: function(e, dt, button, config) {
-                    window.location = "{{route('multi_komponen_iku_admin')}}";
+                    window.location = "{{route('multi_komponen_pm_admin')}}";
                 }
             },
             ],

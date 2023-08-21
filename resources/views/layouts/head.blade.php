@@ -7,7 +7,7 @@
     <meta name="author" content="Auliya Putra Azhari">
     <!-- Favicon icon -->
     {{-- <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon.png')}}"> --}}
-    <link rel="icon" type="image/x-icon" href="https://oa.kemenkeu.go.id/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{asset('assets/images/romadan-pusintek-favicon.ico')}}">
     <title>Dashboard PM Romadan</title>
     <!-- Custom CSS -->
     <link href="{{asset('assets/libs/chartist/dist/chartist.min.css')}}" rel="stylesheet">
